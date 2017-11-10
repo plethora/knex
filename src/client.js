@@ -31,6 +31,8 @@ const debugQuery = require('debug')('knex:query')
 // for a dialect specific client object.
 function Client(config = {}) {
   this.config = config
+
+  this.formattedDebugLog = config.formattedDebugLog
   this.connectionSettings = cloneDeep(config.connection || {})
   if (this.driverName && config.connection) {
     this.initializeDriver()

@@ -31,8 +31,13 @@ assign(Runner.prototype, {
       runner.builder.emit('start', runner.builder)
       const sql = runner.builder.toSQL();
 
+
       if (runner.builder._debug) {
-        helpers.debugLog(sql)
+        if (runner.client.formattedDebugLog) {
+          runner.client.formattedDebugLog(sql);
+        } else {
+          helpers.debugLog(sql)
+        }
       }
 
       if (isArray(sql)) {
